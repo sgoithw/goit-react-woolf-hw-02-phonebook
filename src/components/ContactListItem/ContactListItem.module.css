@@ -1,0 +1,13 @@
+.contactListItem {
+  list-style: disc;
+  margin: 10px 0;
+}
+.contactListItemDeleteButton {
+  background-color: #f00;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  float: right;
+}
