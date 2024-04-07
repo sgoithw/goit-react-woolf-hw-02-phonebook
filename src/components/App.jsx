@@ -10,6 +10,11 @@ class App extends Component {
   };
 
   addContact = ({ name, number }) => {
+    if (this.state.contacts.find(contact => contact.name === name)) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
+
     this.setState(({ contacts }) => ({
       contacts: [
         {
@@ -32,6 +37,13 @@ class App extends Component {
     this.setState({ filter: event.currentTarget.value });
   };
 
+  getVisibleContacts = () => {
+    const { contacts, filter } = this.state;
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
+
   render() {
     return (
       <div>
@@ -40,9 +52,7 @@ class App extends Component {
         <h2>Contacts</h2>
         <Filter value={this.state.filter} onChange={this.changeFilter} />
         <ContactList
-          contacts={this.state.contacts.filter(contact =>
-            contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
-          )}
+          contacts={this.getVisibleContacts()}
           onDeleteContact={this.deleteContact}
         />
       </div>
